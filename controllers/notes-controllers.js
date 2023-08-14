@@ -11,16 +11,31 @@ const getAllNotes = async (req, res, next) => {
     try {
         // Prepare the query object based on the extracted parameters
         const queryObject = {};
-        
+
         //Query the db
         let query = NoteModelSchema.find(queryObject);
-        
+
         //Await the executed query
         const notes = await query;
         console.log(queryObject);
         console.log(query);
 
         handleResponse(res, 200, { notes });
+
+    } catch (error) { handleResponse(res, 500, { error }); }
+}
+
+//Create a note
+const createNote = async (req, res) => {
+    try {
+        const { body } = req
+
+        //Query the db - to create a note
+        let query = NoteModelSchema.create(body);
+        
+        //Await the executed query
+        const notes = await query;
+        console.log(query);
 
     } catch (error) { handleResponse(res, 500, { error }); }
 }
