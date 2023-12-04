@@ -104,7 +104,13 @@ const updateJob = async (req, res) => {
 
     return res.status(StatusCodes.OK).json({ job })
 }
-
+/**
+ * Deletes a job from the database.
+ * 
+ * @param {Object} req - The request object, containing job and user details.
+ * @param {Object} res - The response object to send back the delete status.
+ * @returns {Promise<Response>} The response object with the status code and delete confirmation or error message.
+ */
 const deleteJob = async (req, res) => {
 
     const { body: { company, position }, user: { userId }, params: { id: jobId } } = req
